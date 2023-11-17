@@ -25,8 +25,9 @@ SECRET_KEY = 'django-insecure-!0e=gbr*ogax5c2ele0$6g9r^!s*31x5*z_auv!7z_w2rzfoa+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["*"]
+CORS_ALLOW_ALL_ORIGINS=True
+CORS_ALLOW_CREDENTIALS=True
 
 # Application definition
 
@@ -37,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+     'blog',
+     'login',
+    'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -47,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'blog_backend.urls'
@@ -74,12 +80,17 @@ WSGI_APPLICATION = 'blog_backend.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+'default': {
+'ENGINE': 'djongo',
+"CLIENT": {
+"name": "blogappdb",
+"host": "mongodb+srv://akhilarackal101:akhil@cluster0.5uqdmdi.mongodb.net/?retryWrites=true&w=majority",
+"username": "akhilarackal101",
+"password": "akhil",
+"authMechanism": "SCRAM-SHA-1",
+},
+ }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
